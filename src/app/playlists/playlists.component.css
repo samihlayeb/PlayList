@@ -1,0 +1,11 @@
+.container {
+  max-width: 900px;
+  margin: 2em auto 10em;
+}
+.divider {
+  margin: 1em;
+}
+.card {
+  margin-top: 2em;
+}
+
