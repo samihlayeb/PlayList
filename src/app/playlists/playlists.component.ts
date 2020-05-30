@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {MatDialog} from '@angular/material';
+import {DialogComponent} from './dialog/dialog.component';
 interface Playlist {
   name: string;
   totalDuration: number;
@@ -7,7 +8,6 @@ interface Playlist {
   description: string;
   songs: Song[];
 }
-
 interface Song {
   title: string;
   artist: string;
@@ -63,12 +63,30 @@ export class PlaylistsComponent implements OnInit {
     }
   ];
 
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog) {
+  }
 
   ngOnInit() {
   }
+
   addPlaylist() {
+    const dialogWindow = this.dialog.open(DialogComponent, {
+      width: '900px',
+      data: {
+        operation: 'create'
+      }
+    });
   }
-  deletePlaylist(i) {}
-  editPlaylist(playlist, i) {}
+  deletePlaylist(i: number) {
+    this.playlists.splice(i, 1);
+  }
+
+  editPlaylist(playlist: Playlist, index: number) {
+    const dialogWindow = this.dialog.open(DialogComponent, {
+      width: '900px',
+      data: {
+        operation: 'edit',
+      }
+    });
+  }
 }

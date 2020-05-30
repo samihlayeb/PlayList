@@ -12,9 +12,10 @@ import {
   MatListModule
 } from '@angular/material';
 import {ReactiveFormsModule} from '@angular/forms';
+import { DialogComponent } from './dialog/dialog.component';
 
 @NgModule({
-  declarations: [PlaylistsComponent],
+  declarations: [PlaylistsComponent, DialogComponent],
   imports: [CommonModule, RouterModule.forChild(PlaylistsRoutes),
     MatButtonModule,
     MatCardModule,
@@ -27,7 +28,10 @@ import {ReactiveFormsModule} from '@angular/forms';
     MatGridListModule,
     ReactiveFormsModule,
     MatIconModule],
-  providers: []
+  providers: [],
+  entryComponents: [
+    DialogComponent
+  ]
 })
 
 export class PlaylistsModule {}
