@@ -35,6 +35,9 @@ export class DialogComponent implements OnInit {
           this.addSong();
         }
       });
+      /***** Patches the value of the FormGroup.
+       * It accepts an object with control names as keys,
+       * and does its best to match the values to the correct controls in the group.*****/
       this.formPlayList.patchValue(this.data.dataPlayList);
     }
   }
