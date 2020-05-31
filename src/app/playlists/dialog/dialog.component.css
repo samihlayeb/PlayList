@@ -1,0 +1,6 @@
+mat-form-field {  width: 90%; }
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+

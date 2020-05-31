@@ -71,9 +71,14 @@ export class PlaylistsComponent implements OnInit {
 
   addPlaylist() {
     const dialogWindow = this.dialog.open(DialogComponent, {
-      width: '900px',
+      width: '800px',
       data: {
-        operation: 'create'
+        function: 'create'
+      }
+    });
+    dialogWindow.afterClosed().subscribe(result => {
+      if (result.data) {
+        this.playlists.push(result.data);
       }
     });
   }
@@ -83,9 +88,16 @@ export class PlaylistsComponent implements OnInit {
 
   editPlaylist(playlist: Playlist, index: number) {
     const dialogWindow = this.dialog.open(DialogComponent, {
-      width: '900px',
+      width: '800px',
       data: {
-        operation: 'edit',
+        function: 'edit',
+        dataPlayList: playlist,
+        position: index
+      }
+    });
+    dialogWindow.afterClosed().subscribe((result: {data: Playlist, index: number}) => {
+      if (result.data) {
+        this.playlists[result.index] = result.data;
       }
     });
   }

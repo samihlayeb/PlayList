@@ -1,3 +1,4 @@
+<h1>{{data.function === 'edit' ? 'Edit Playlist' : 'Create New Playlist'}}</h1>
 <div>
   <form [formGroup]="formPlayList">
     <div>
@@ -14,8 +15,10 @@
         </mat-form-field>
       </div>
     </div>
+
+
     <ng-container formArrayName="songs">
-      <div *ngFor="let song of songs.controls; let i=index">
+      <div class="row" *ngFor="let song of songs.controls; let i=index" [formGroupName]="i">
         <div>
           <mat-form-field>
             <input matInput placeholder="Song title" formControlName="title">
@@ -32,11 +35,21 @@
             <span>minutes</span>
           </mat-form-field>
         </div>
+        <div>
+          <button mat-button color="primary" *ngIf="i === songs.controls.length" (click)="addSong()">
+            <mat-icon>playlist_add_check</mat-icon>
+          </button>
+          <button mat-button color="warn" *ngIf="songs.controls.length > 0" (click)="removeSong(i)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
       </div>
     </ng-container>
+
+
   </form>
 </div>
-<div>
+<div class="btn">
   <button mat-button color="warn" (click)="onCancel()">CANCEL</button>
-  <button mat-button color= "primary" (click)= "onSubmit()">SUBMIT</button>
+  <button mat-button color="primary" (click)="onSubmit()" >SUBMIT</button>
 </div>
